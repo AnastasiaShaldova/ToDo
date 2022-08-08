@@ -1,6 +1,7 @@
 import React from "react";
 import './App.css';
 import UsersList from "./components/user";
+import FooterList from "./components/footer";
 import axios from "axios";
 
 class App extends React.Component {
@@ -19,27 +20,13 @@ class App extends React.Component {
         }
     )
     }).catch(error => console.log(error))
-    // const users = [
-    //   {
-    //     'username': 'Ivan',
-    //     'first_name': 'Иванов',
-    //     'last_name': 'Иван',
-    //     'email': 'ivan@ivan.ru',
-    //   },
-    //   {
-    //     'username': 'Frodo',
-    //     'first_name': 'Федор',
-    //     'last_name': 'Федоров',
-    //     'email': 'frodo@frodo.ru',
-    //   },
-    // ]
-
   }
 
   render() {
     return (
         <div>
           <UsersList users={this.state.usersapp}/>
+          <FooterList footer={this.state.footer}/>
         </div>
     )
   }
