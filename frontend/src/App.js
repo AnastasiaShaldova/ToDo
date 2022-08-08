@@ -1,5 +1,6 @@
 import React from "react";
 import './App.css';
+import MenuList from "./components/menu";
 import UsersList from "./components/user";
 import FooterList from "./components/footer";
 import axios from "axios";
@@ -25,6 +26,7 @@ class App extends React.Component {
   render() {
     return (
         <div>
+          <MenuList menu={this.state.menu}/>
           <UsersList users={this.state.usersapp}/>
           <FooterList footer={this.state.footer}/>
         </div>
