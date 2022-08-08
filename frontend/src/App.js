@@ -1,6 +1,6 @@
 import React from "react";
 import './App.css';
-import UsersList from "./components/users";
+import UsersList from "./components/user";
 
 class App extends React.Component {
   constructor(props) {
@@ -11,7 +11,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    const usersapp = [
+    const users = [
       {
         'username': 'Ivan',
         'first_name': 'Иванов',
@@ -27,7 +27,7 @@ class App extends React.Component {
     ]
     this.setState(
         {
-          'usersapp': usersapp
+          'usersapp': users
         }
     )
   }
@@ -35,7 +35,7 @@ class App extends React.Component {
   render() {
     return (
         <div>
-          <UsersList usersapp={this.state.usersapp}/>
+          <UsersList users={this.state.usersapp}/>
         </div>
     )
   }
