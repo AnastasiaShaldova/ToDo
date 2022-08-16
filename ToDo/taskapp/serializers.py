@@ -1,15 +1,15 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import HyperlinkedModelSerializer
 
 from .models import Project, Tasks
 
 
-class ProjectModelSerializer(ModelSerializer):
+class ProjectHyperlinkedModelSerializer(HyperlinkedModelSerializer):
     class Meta:
         model = Project
         fields = '__all__'
 
 
-class TasksModelSerializer(ModelSerializer):
+class TasksHyperlinkedModelSerializer(HyperlinkedModelSerializer):
     class Meta:
         model = Tasks
         fields = '__all__'
