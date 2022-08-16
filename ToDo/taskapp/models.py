@@ -12,7 +12,7 @@ class Project(models.Model):
 
 class Tasks(models.Model):
     projects = models.OneToOneField(Project, on_delete=models.CASCADE)
-    text = models.TextField
+    text = models.TextField(blank=True, null=True)
     date_create = models.DateTimeField(auto_now_add=True)
     date_update = models.DateTimeField(auto_now=True)
 
