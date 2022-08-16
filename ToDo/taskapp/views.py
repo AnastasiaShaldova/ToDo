@@ -1,3 +1,17 @@
-from django.shortcuts import render
+from rest_framework.viewsets import ModelViewSet
 
-# Create your views here.
+from .models import Project, Tasks
+from .serializers import ProjectHyperlinkedModelSerializer, TasksHyperlinkedModelSerializer
+
+
+class ProjectModelViewSet(ModelViewSet):
+    queryset = Project.objects.all()
+    serializer_class = ProjectHyperlinkedModelSerializer
+
+
+class TasksModelViewSet(ModelViewSet):
+    queryset = Tasks.objects.all()
+    serializer_class = TasksHyperlinkedModelSerializer
+
+
+
