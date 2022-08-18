@@ -11,7 +11,7 @@ class ProjectFilterSet(filters.FilterSet):
         fields = ['title']
 
 
-class ToDoFilterSet(filters.FilterSet):
+class TaskFilterSet(filters.FilterSet):
     create = filters.DateFromToRangeFilter()
     project = filters.ModelChoiceFilter(queryset=Project.object.all())
 
