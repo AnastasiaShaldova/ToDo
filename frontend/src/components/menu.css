@@ -1,0 +1,17 @@
+.menu {
+    display: inline-flex;
+    justify-content: left;
+    background-color: #45a1ff;
+    color: #fff;
+}
+
+.menu a {
+    color: white;
+    margin-right: 30px;
+    text-decoration: none;
+}
+
+.menu a:hover {
+  text-decoration: underline;
+}
+
