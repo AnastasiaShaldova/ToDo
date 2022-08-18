@@ -1,6 +1,6 @@
 from django_filters import rest_framework as filters
 
-from .models import Project
+from .models import Project, Tasks
 
 
 class ProjectFilterSet(filters.FilterSet):
@@ -10,5 +10,13 @@ class ProjectFilterSet(filters.FilterSet):
         model = Project
         fields = ['title']
 
+
+class ToDoFilterSet(filters.FilterSet):
+    create = filters.DateFromToRangeFilter()
+    project = filters.ModelChoiceFilter(queryset=Project.object.all())
+
+    class Meta:
+        model = Tasks
+        fields = ['projects', 'date_create']
 
 
