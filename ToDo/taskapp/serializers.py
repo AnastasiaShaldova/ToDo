@@ -12,7 +12,6 @@ class ProjectHyperlinkedModelSerializer(HyperlinkedModelSerializer):
 
 
 class TasksHyperlinkedModelSerializer(HyperlinkedModelSerializer):
-    users = StringRelatedField(many=True)
 
     class Meta:
         model = Tasks
