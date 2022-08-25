@@ -8,7 +8,7 @@ from .models import Project, Tasks
 from .serializers import ProjectHyperlinkedModelSerializer, TasksHyperlinkedModelSerializer
 
 
-class ProjectLimitOffsetPagination(PageNumberPagination):
+class ProjectLimitOffsetPagination(LimitOffsetPagination):
     default_limit = 10
 
 

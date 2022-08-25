@@ -1,14 +1,12 @@
 import React from "react";
-import './footer.css'
 
-const FooterList = () => {
+
+const AppFooter = () => {
     return (
-        <article>
-            <footer>
-                <h1>&copy;{new Date().getFullYear()} Сервис для заметок</h1>
-            </footer>
-        </article>
+        <div className="wrapper">
+                <p>Это футер"</p>
+        </div>
     )
 }
 
-export default FooterList;
+export default AppFooter;
