@@ -1,4 +1,4 @@
-from rest_framework.serializers import HyperlinkedModelSerializer, ModelSerializer
+from rest_framework.serializers import ModelSerializer
 
 from .models import Users
 
@@ -6,4 +6,4 @@ from .models import Users
 class UsersModelSerializer(ModelSerializer):
     class Meta:
         model = Users
-        fields = 'username', 'first_name', 'last_name', 'email'
+        fields = ('username', 'first_name', 'last_name', 'email')

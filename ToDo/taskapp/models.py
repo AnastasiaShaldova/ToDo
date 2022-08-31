@@ -8,9 +8,6 @@ class Project(models.Model):
     link_to_repository = models.URLField(help_text='Project url', blank=True)
     users = models.ManyToManyField(Users)
 
-    class Meta:
-        ordering = ['-id']
-
     def __str__(self):
         return self.title
 

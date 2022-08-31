@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'usersapp',
     'corsheaders',
     'taskapp',
+    'rest_framework.authtoken'
 ]
 
 MIDDLEWARE = [
@@ -79,7 +80,6 @@ TEMPLATES = [
 ]
 
 REST_FRAMEWORK = {
-
     'DEFAULT_RENDERER_CLASSES': (
         'djangorestframework_camel_case.render.CamelCaseJSONRenderer',
         'djangorestframework_camel_case.render.CamelCaseBrowsableAPIRenderer',
@@ -93,9 +93,19 @@ REST_FRAMEWORK = {
         'djangorestframework_camel_case.parser.CamelCaseJSONParser',
         # Any other parsers
     ),
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    #     'rest_framework.authentication.SessionAuthentication',
+    #     'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
 
     # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     # 'PAGE_SIZE': 100
+
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated'
+    ],
 }
 
 WSGI_APPLICATION = 'ToDo.wsgi.application'
@@ -153,6 +163,6 @@ STATIC_URL = '/static/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 AUTH_USER_MODEL = 'usersapp.Users'
