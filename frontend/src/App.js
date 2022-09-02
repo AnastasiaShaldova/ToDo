@@ -3,7 +3,7 @@ import './App.css';
 import AppHeader from "./components/header";
 import UsersList from "./components/user";
 import TasksList from "./components/tasks";
-// import TasksUser from "./components/tasksUser";
+import TasksUser from "./components/tasksUser";
 import AppFooter from "./components/footer";
 import NotFound404 from "./components/NotFound404";
 import LoginForm from "./Auth";
@@ -21,6 +21,11 @@ class App extends React.Component {
             'token': '',
         }
     }
+
+    logout() {
+        this.set_token('')
+    }
+
     is_auth(){
         return !!this.state.token
     }
@@ -29,6 +34,12 @@ class App extends React.Component {
         cookies.set('token', token)
         this.setState({'token': token}, () => this.load_data())
         console.log(this.state.token)
+    }
+
+    get_token_from_storage() {
+        const cookies = new Cookies()
+        const token = cookies.get('token')
+        this.setState({'token': token}, () => this.load_data())
     }
 
     get_token(username, password) {
@@ -71,7 +82,7 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        this.load_data()
+        this.get_token_from_storage()
     }
 
     render() {
@@ -80,7 +91,7 @@ class App extends React.Component {
                 <NavLink to='/'>Главная</NavLink>
                 <NavLink to='/users'>Пользователи</NavLink>
                 <NavLink to='/tasks'>Записки</NavLink>
-                <NavLink to='/login'>Логин</NavLink>
+                {this.is_auth() ? <button onClick={() => this.logout()}>Выйти</button> : <NavLink to='/login'>Войти</NavLink>}
                 <Routes>
                     <Route path="/" element={<AppHeader header={this.state.header}/>}></Route>
                     <Route path="/" element={<AppFooter footer={this.state.footer}/>}></Route>
@@ -88,7 +99,7 @@ class App extends React.Component {
                     <Route path="/tasks" element={<TasksList tasks={this.state.tasks}/>}></Route>
                     <Route path="/login" element={
                         <LoginForm get_token={(username, password) => this.get_token(username, password)}/>}></Route>
-                    {/*<Route path='/users/:user'><TasksUser users={this.state.users}/></Route>*/}
+                    <Route path='/users/:user' element={<TasksUser users={this.state.users}/>}></Route>
                     <Route path="/task" element={<Navigate to='/tasks'/>}></Route>
                     <Route path="/*" element={<NotFound404/>}></Route>
                 </Routes>
