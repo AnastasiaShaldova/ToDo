@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     # my applications
     'usersapp',
     'taskapp',
+    'usapp',
 ]
 
 MIDDLEWARE = [
@@ -115,6 +116,11 @@ REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': [
         'django_filters.rest_framework.DjangoFilterBackend'
     ],
+
+    # 'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.URLPathVersioning',
+    # 'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.NamespaceVersioning',
+    'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.QueryParameterVersioning',
+
 
 }
 
