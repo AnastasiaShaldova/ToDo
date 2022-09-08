@@ -4,7 +4,7 @@ import AppHeader from "./components/header";
 import UsersList from "./components/user";
 import TasksList from "./components/tasks";
 import TasksUser from "./components/tasksUser";
-import AppFooter from "./components/footer";
+// import AppFooter from "./components/footer";
 import NotFound404 from "./components/NotFound404";
 import LoginForm from "./Auth";
 import axios from "axios";
@@ -20,6 +20,17 @@ class App extends React.Component {
             'tasks': [],
             'token': '',
         }
+    }
+
+    delete_tasks(id) {
+        console.log(id)
+        const headers = this.get_headers()
+        axios.get(`http://127.0.0.1:8000/api/tasks/${id}`, {headers}).then(response => {
+            this.load_data()
+        }).catch(error => {
+            console.log(error)
+            this.setState({tasks:[]})
+        })
     }
 
     logout() {
@@ -94,9 +105,9 @@ class App extends React.Component {
                 {this.is_auth() ? <button onClick={() => this.logout()}>Выйти</button> : <NavLink to='/login'>Войти</NavLink>}
                 <Routes>
                     <Route path="/" element={<AppHeader header={this.state.header}/>}></Route>
-                    <Route path="/" element={<AppFooter footer={this.state.footer}/>}></Route>
+                    {/*<Route path="/" element={<AppFooter footer={this.state.footer}/>}></Route>*/}
                     <Route path="/users" element={<UsersList users={this.state.users}/>}></Route>
-                    <Route path="/tasks" element={<TasksList tasks={this.state.tasks}/>}></Route>
+                    <Route path="/tasks" element={<TasksList tasks={this.state.tasks} delete_tasks={(id)=>this.delete_tasks(id)}/>}></Route>
                     <Route path="/login" element={
                         <LoginForm get_token={(username, password) => this.get_token(username, password)}/>}></Route>
                     <Route path='/users/:user' element={<TasksUser users={this.state.users}/>}></Route>

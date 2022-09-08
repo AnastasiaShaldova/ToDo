@@ -7,8 +7,8 @@ const UserItem = ({user}) => {
         <thead>
         <tr>
             <td><NavLink to={`/user/${user.id}`}>{user.username}</NavLink></td>
-            <td>{user.firstName}</td>
-            <td>{user.lastName}</td>
+            <td>{user.first_name}</td>
+            <td>{user.last_name}</td>
             <td>{user.email}</td>
         </tr>
         </thead>

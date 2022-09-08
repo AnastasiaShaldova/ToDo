@@ -7,7 +7,7 @@ const TasksItem = ({task}) => {
         <tr>
             <td>{task.id}</td>
             <td>{task.text}</td>
-            <td>{task.dateCreate}</td>
+            <td>{task.date_create}</td>
             <td>{task.projects}</td>
             <td>{task.user}</td>
         </tr>
