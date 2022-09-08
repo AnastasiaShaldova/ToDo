@@ -10,6 +10,7 @@ import LoginForm from "./Auth";
 import axios from "axios";
 import Cookies from "universal-cookie";
 import {BrowserRouter, Route, Routes, Navigate, NavLink} from 'react-router-dom';
+import TasksForm from "./components/tasksForm";
 
 
 class App extends React.Component {
@@ -21,6 +22,19 @@ class App extends React.Component {
             'token': '',
         }
     }
+
+
+     create_tasks(text, users) {
+        const headers = this.get_headers()
+        const data = {text: text, users: users}
+        axios.post(`http://127.0.0.1:8000/api/tasks/`, data, {headers}).then(response => {
+            this.load_data()
+        }).catch(error => {
+            console.log(error)
+            this.setState({tasks:[]})
+        })
+    }
+
 
     delete_tasks(id) {
         console.log(id)
@@ -107,6 +121,7 @@ class App extends React.Component {
                     <Route path="/" element={<AppHeader header={this.state.header}/>}></Route>
                     {/*<Route path="/" element={<AppFooter footer={this.state.footer}/>}></Route>*/}
                     <Route path="/users" element={<UsersList users={this.state.users}/>}></Route>
+                    <Route path="/tasks/crate" element={<TasksForm users={this.state.users} create_tasks={(text, user)=>this.create_tasks(text, user)}/>}></Route>
                     <Route path="/tasks" element={<TasksList tasks={this.state.tasks} delete_tasks={(id)=>this.delete_tasks(id)}/>}></Route>
                     <Route path="/login" element={
                         <LoginForm get_token={(username, password) => this.get_token(username, password)}/>}></Route>
