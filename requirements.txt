@@ -34,3 +34,5 @@ tzdata==2022.1
 uritemplate==4.1.1
 urllib3==1.26.12
 zope.interface==5.4.0
+
+graphene~=2.1.9
